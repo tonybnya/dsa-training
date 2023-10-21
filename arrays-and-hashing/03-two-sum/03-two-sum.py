@@ -30,7 +30,7 @@ from typing import List
 
 
 def solution1(nums: List[int], target: int) -> List[int]:
-    """Solution 1: Naive approach, nested loop
+    """Solution 1: Brute Force
     Time Complexity: O(n^2)
     Space Complexity: O(1)
     """
@@ -43,23 +43,20 @@ def solution1(nums: List[int], target: int) -> List[int]:
 
 
 def solution2(nums: List[int], target: int) -> List[int]:
-    """Solution 2: Two pointers
+    """Solution 2: Hasmap
     Time Complexity: O(n)
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
     n = len(nums)
+    hmap = {}
 
-    i, j = 0, n - 1
-    while i != j:
-        add = nums[i] + nums[j]
-        if add == target:
-            return [i, j]
-
-        if nums[i] < nums[j]:
-            j -= 1
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff not in hmap:
+            hmap.update({num: i})
         else:
-            i += 1
-
+            return [hmap.get(diff), i]
+    
     return
 
 
@@ -89,7 +86,8 @@ if __name__ == '__main__':
 
         print(f"Example {i}:")
         print(f"Input: nums = {nums}, target = {target}")
-        print(f"Output: {test.get('expected')}")
+        print(f"Expected: {test.get('expected')}")
+        print(f"Got: {got}")
 
         if got == expected:
             print('Test Passed! ✅')
