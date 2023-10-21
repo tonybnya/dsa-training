@@ -1,0 +1,12 @@
+Example 1:
+Input: s = anagram, t = nagaram
+Expected: True
+Got: True
+Test Passed! ✅
+
+Example 2:
+Input: s = rat, t = car
+Expected: False
+Got: False
+Test Passed! ✅
+
